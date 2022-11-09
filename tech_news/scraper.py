@@ -1,3 +1,4 @@
+from parsel import Selector
 import requests
 from time import sleep
 
@@ -18,12 +19,20 @@ def fetch(url):
 
 # Requisito 2
 def scrape_novidades(html_content):
-    """Seu código deve vir aqui"""
+    try:
+        response = Selector(html_content)
+        return response.css(".cs-overlay-link::attr(href)").getall()
+    except AttributeError:
+        return None
 
 
 # Requisito 3
 def scrape_next_page_link(html_content):
-    """Seu código deve vir aqui"""
+    try:
+        response = Selector(html_content)
+        return response.css(".next::attr(href)").get()
+    except AttributeError:
+        return None
 
 
 # Requisito 4
