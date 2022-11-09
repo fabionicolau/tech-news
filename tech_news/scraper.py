@@ -37,7 +37,19 @@ def scrape_next_page_link(html_content):
 
 # Requisito 4
 def scrape_noticia(html_content):
-    """Seu código deve vir aqui"""
+    response = Selector(html_content)
+
+    dict_news = {
+        "url": response.css("link[rel=canonical]::attr(href)").get(),
+        "title": response.css("h1.entry-title::text").get().strip(),
+        "timestamp": response.css("li.meta-date::text").get(),
+        "writer": response.css("span.author a::text").get(),
+        "comments_count": 0,
+        "summary": response.xpath("string(//p[1])").get().strip(),
+        "tags": response.css("li a[rel=tag]::text").getall(),
+        "category": response.css("div.meta-category span.label::text").get(),
+    }
+    return dict_news
 
 
 # Requisito 5
