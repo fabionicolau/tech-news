@@ -1,6 +1,7 @@
 import requests
 from time import sleep
 
+
 # Requisito 1
 def fetch(url):
     sleep(1)
