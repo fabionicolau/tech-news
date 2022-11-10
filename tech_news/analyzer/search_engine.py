@@ -1,4 +1,4 @@
-from tech_news.database import find_news, search_news
+from tech_news.database import search_news
 from datetime import datetime
 
 
